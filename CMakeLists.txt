@@ -6,6 +6,12 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist)
 # Libraries that need to be compiled by CMake
 add_subdirectory (lib/glfw EXCLUDE_FROM_ALL)
 
+# Don't build useless sample programs
+option(GLFW_BUILD_EXAMPLES "Build the GLFW example programs" OFF)
+option(GLFW_BUILD_TESTS "Build the GLFW test programs" OFF)
+option(GLFW_BUILD_DOCS "Build the GLFW documentation" OFF)
+option(GLFW_INSTALL "Generate installation target" OFF)
+
 # Libraries that need to be added to the include path
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/)
