@@ -3,14 +3,14 @@ project (astro)
 set (EXECUTABLE_NAME astro)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist)
 
+# Override default options in CMake subdirectories
+SET (GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Build the GLFW example programs")
+SET (GLFW_BUILD_TESTS OFF CACHE BOOL "Build the GLFW example programs")
+SET (GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation")
+SET (GLFW_INSTALL OFF CACHE BOOL "Generate the GLFW installation target")
+
 # Libraries that need to be compiled by CMake
 add_subdirectory (lib/glfw EXCLUDE_FROM_ALL)
-
-# Don't build useless sample programs
-option(GLFW_BUILD_EXAMPLES "Build the GLFW example programs" OFF)
-option(GLFW_BUILD_TESTS "Build the GLFW test programs" OFF)
-option(GLFW_BUILD_DOCS "Build the GLFW documentation" OFF)
-option(GLFW_INSTALL "Generate installation target" OFF)
 
 # Libraries that need to be added to the include path
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
