@@ -5,18 +5,17 @@
 namespace astro
 {
 
-	enum ShaderType
-	{
-		VERTEX,
-		GEOMETRY,
-		FRAGMENT,
-	};
-
 	class Shader
 	{
 
 	public:
 
+		enum ShaderType
+		{
+			VERTEX,
+			GEOMETRY,
+			FRAGMENT,
+		};
 		Shader(const std::string & filePath, ShaderType type);
 
 	private:
