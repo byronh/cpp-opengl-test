@@ -20,14 +20,16 @@ int main(void)
 	if (!glfwInit())
 		return -1;
 
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	// glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	// glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	// glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	// glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+	window = glfwCreateWindow(1280, 768, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
+		std::cout << "Failed to create GLFW window!" << std::endl;
+		std::cin.get();
 		return -1;
 	}
 
@@ -44,22 +46,18 @@ int main(void)
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
+
+		glfwDestroyWindow(window);
+		glfwTerminate();
+		return 0;
+
 	} else {
 		std::cout << "Failed to load ogl functions!" << std::endl;
 		std::cin.get();
 
-		while (!glfwWindowShouldClose(window))
-		{
-			glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-			glfwSwapBuffers(window);
-			glfwPollEvents();
-		}
+		glfwDestroyWindow(window);
+		glfwTerminate();
+		return -1;
 	}
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
-
-	return 0;
 }
