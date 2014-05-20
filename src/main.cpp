@@ -5,6 +5,7 @@
 #include <glm/vec3.hpp>
 #include <glm/ext.hpp>
 
+#include <cstdio>
 
 int main(void)
 {
@@ -34,15 +35,12 @@ int main(void)
 		return -1;
 	}
 
-	int major, minor, rev;
-	const char * verString;
-	glfwGetVersion(&major, &minor, &rev);
-	verString = glfwGetVersionString();
-	fprintf(stderr, "OpenGL version received: %d.%d.%d\n", major, minor, rev);
-	fprintf(stderr, verString);
+	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
 
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
+
+	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
 
 	if (ogl_LoadFunctions() == ogl_LOAD_SUCCEEDED)
 	{
