@@ -13,8 +13,6 @@ int main(void)
 	std::cout << "Hello World!" << std::endl;
 	glm::vec3 vec(0.5f, 0.5f, 0.5f);
 	std::cout << "Testing glm: " << glm::to_string(vec) << std::endl;
-	std::cout << "Press [Enter] to open a GLFW window..." << std::endl;
-	std::cin.get();
 
 	GLFWwindow* window;
 
@@ -35,15 +33,13 @@ int main(void)
 		return -1;
 	}
 
-	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
-
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 
-	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
-
 	if (ogl_LoadFunctions() == ogl_LOAD_SUCCEEDED)
 	{
+		printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
+
 		while (!glfwWindowShouldClose(window))
 		{
 			glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
