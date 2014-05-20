@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "gl_core_3_3.h"
 #include <GLFW/glfw3.h>
 #include <glm/vec3.hpp>
 #include <glm/ext.hpp>
@@ -33,15 +34,19 @@ int main(void)
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 
-	while (!glfwWindowShouldClose(window))
+	if (ogl_LoadFunctions() == ogl_LOAD_SUCCEEDED)
 	{
-		glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		while (!glfwWindowShouldClose(window))
+		{
+			glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+			glfwSwapBuffers(window);
+			glfwPollEvents();
+		}
 	}
 
+	glfwDestroyWindow(window);
 	glfwTerminate();
 
 	return 0;
