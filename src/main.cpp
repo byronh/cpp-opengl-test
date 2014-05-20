@@ -20,10 +20,11 @@ int main(void)
 	if (!glfwInit())
 		return -1;
 
-	// glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	// glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	// glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	// glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 	window = glfwCreateWindow(1280, 768, "Hello World", NULL, NULL);
 	if (!window)
 	{
@@ -32,6 +33,10 @@ int main(void)
 		std::cin.get();
 		return -1;
 	}
+
+	int major, minor, rev;
+	glfwGetGLVersion(&major, &minor, &rev);
+	fprintf(stderr, "OpenGL version received: %d.%d.%d", major, minor, rev);
 
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
