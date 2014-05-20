@@ -30,13 +30,13 @@ namespace astro
 
 		switch (type)
 		{
-		case ShaderType::VERTEX:
+		case Shader::VERTEX:
 			shaderType = GL_VERTEX_SHADER;
 			break;
-		case ShaderType::GEOMETRY:
+		case Shader::GEOMETRY:
 			shaderType = GL_GEOMETRY_SHADER;
 			break;
-		case ShaderType::FRAGMENT:
+		case Shader::FRAGMENT:
 			shaderType = GL_FRAGMENT_SHADER;
 			break;
 		default:

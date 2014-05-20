@@ -6,8 +6,7 @@ namespace astro
 {
 	void Game::setup()
 	{
-		
-		Shader* shader = new Shader("/shaders/basic.vert.glsl", Shader::ShaderType::VERTEX);
+		Shader* shader = new Shader("/shaders/basic.vert.glsl", Shader::VERTEX);
 	}
 
 	void Game::shutdown()
