@@ -44,6 +44,18 @@ int main(void)
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
+	} else {
+		std::cout << "Failed to load ogl functions!" << std::endl;
+		std::cin.get();
+
+		while (!glfwWindowShouldClose(window))
+		{
+			glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			glfwSwapBuffers(window);
+			glfwPollEvents();
+		}
 	}
 
 	glfwDestroyWindow(window);
