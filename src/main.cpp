@@ -1,9 +1,10 @@
-#include <iostream>
-#include "gl_core_3_3.h"
+#include "Exception.h"
+#include "Game.h"
+
+#include "OpenGL.h"
 #include <GLFW/glfw3.h>
 
-#include "Exception.h"
-
+#include <iostream>
 
 void run()
 {
@@ -43,17 +44,21 @@ void run()
 	}
 	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
+	astro::Game game;
+	game.setup();
+
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		game.update();
+		game.render();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
 	// Shut down
+	game.shutdown();
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }

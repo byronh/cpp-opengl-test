@@ -38,6 +38,9 @@ add_executable (${EXECUTABLE_NAME} ${CPP_CODE} ${SHADER_CODE})
 target_link_libraries (${EXECUTABLE_NAME} glfw)
 target_link_libraries (${EXECUTABLE_NAME} ${GLFW_LIBRARIES})
 
+# Define preprocessor macros
+add_definitions (-DEXECUTABLE_DIRECTORY="$<TARGET_FILE_DIR:${EXECUTABLE_NAME}>")
+
 # Copy shader files to the distribution folder
 add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
