@@ -1,13 +1,16 @@
 #include "Shader.h"
 #include "Exception.h"
-#include "OpenGL.h"
+#include "Logger.h"
 
+#include <assert.h>
 #include <fstream>
 #include <sstream>
 
 namespace astro
 {
-	Shader::Shader(const std::string & relativePath, ShaderType type)
+	Shader::Shader(const std::string & relativePath, ShaderType type) :
+		handle(0),
+		refCount(NULL)
 	{
 		std::string absolutePath = EXECUTABLE_DIRECTORY + relativePath;
 
@@ -22,6 +25,42 @@ namespace astro
 		buffer << stream.rdbuf();
 
 		build(buffer.str(), type);
+
+		Logger::debug("Calling constructor");
+		refCount = new unsigned;
+		*refCount = 1;
+	}
+
+	Shader::Shader(const Shader & other) :
+		handle(other.handle),
+		refCount(other.refCount)
+	{
+		Logger::debug("Calling copy constructor");
+		retain();
+	}
+
+	Shader & Shader::operator = (const Shader & other)
+	{
+		Logger::debug("Calling assignment operator");
+		release();
+		handle = other.handle;
+		refCount = other.refCount;
+		retain();
+		return *this;
+	}
+
+	Shader::~Shader()
+	{
+		Logger::debug("Calling destructor");
+		if (refCount)
+		{
+			release();
+		}
+	}
+
+	GLuint Shader::getHandle() const
+	{
+		return handle;
 	}
 
 	void Shader::build(const std::string & code, ShaderType type)
@@ -40,36 +79,58 @@ namespace astro
 			shaderType = GL_FRAGMENT_SHADER;
 			break;
 		default:
-			throw Exception("Invalid ShaderType specified");
+			throw Exception("Invalid shader type specified");
 			break;
 		}
 
-		GLuint shader = glCreateShader(shaderType);
-		if (shader == 0)
+		handle = glCreateShader(shaderType);
+		if (handle == 0)
 		{
 			throw Exception("Failed to create shader");
 		}
 
 		const char* shaderCode = code.c_str();
-		glShaderSource(shader, 1, (const GLchar **)& shaderCode, NULL);
-		glCompileShader(shader);
+		glShaderSource(handle, 1, (const GLchar **)& shaderCode, NULL);
+		glCompileShader(handle);
 
 		GLint status;
-		glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
+		glGetShaderiv(handle, GL_COMPILE_STATUS, &status);
 		if (status == GL_FALSE)
 		{
 			std::string msg("Failed to compile shader:\n");
 
 			GLint length;
-			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+			glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &length);
 			char* info = new char[length + 1];
-			glGetShaderInfoLog(shader, length, NULL, info);
+			glGetShaderInfoLog(handle, length, NULL, info);
 			msg += info;
 			delete[] info;
 
-			glDeleteShader(shader);
-			shader = 0;
+			glDeleteShader(handle);
+			handle = 0;
 			throw Exception(msg);
+		}
+	}
+
+	void Shader::retain()
+	{
+		assert(refCount);
+		Logger::debug("Retaining once");
+		*refCount += 1;
+	}
+
+	void Shader::release()
+	{
+		assert(refCount && *refCount > 0);
+		Logger::debug("Releasing once");
+		*refCount -= 1;
+		if (*refCount == 0)
+		{
+			Logger::debug("Deleting entirely");
+			glDeleteShader(handle);
+			handle = 0;
+			delete refCount;
+			refCount = NULL;
 		}
 	}
 }

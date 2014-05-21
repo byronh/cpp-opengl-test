@@ -1,6 +1,10 @@
 #pragma once
 
+#include "OpenGL.h"
+
+#include <memory>
 #include <string>
+#include <vector>
 
 namespace astro
 {
@@ -10,6 +14,7 @@ namespace astro
 
 	public:
 
+		typedef std::vector<Shader> vector;
 		enum ShaderType
 		{
 			VERTEX,
@@ -17,14 +22,23 @@ namespace astro
 			FRAGMENT,
 		};
 		Shader(const std::string & filePath, ShaderType type);
+		Shader(const Shader & other);
+		Shader & operator = (const Shader & other);
+		~Shader();
+
+		GLuint getHandle() const;
 
 	private:
+
+		// TODO hide implementation
+		GLuint handle;
+		unsigned * refCount;
 
 		void build(const std::string & code, ShaderType type);
 
 		Shader();
-		Shader(const Shader & shader);
-		Shader & operator = (const Shader & shader);
+		void retain();
+		void release();
 
 	};
 }

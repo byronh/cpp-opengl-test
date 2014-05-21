@@ -72,7 +72,7 @@ int main(void)
 	catch (astro::Exception & e)
 	{
 		std::cerr << e.what() << std::endl;
-		std::cerr << "Press any key to continue... ";
+		std::cerr << "Press [ENTER] to continue... ";
 		std::cin.get();
 		return EXIT_FAILURE;
 	}

@@ -1,12 +1,20 @@
 #include "Game.h"
 #include "OpenGL.h"
 #include "Shader.h"
+#include "Program.h"
 
 namespace astro
 {
 	void Game::setup()
 	{
-		Shader* shader = new Shader("/shaders/basic.vert.glsl", Shader::VERTEX);
+		Shader vert("/shaders/basic.vert.glsl", Shader::VERTEX);
+		Shader frag("/shaders/basic.frag.glsl", Shader::FRAGMENT);
+
+		Shader::vector shaders;
+		shaders.push_back(vert);
+		shaders.push_back(frag);
+
+		program = new Program(shaders);
 	}
 
 	void Game::shutdown()

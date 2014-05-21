@@ -2,6 +2,8 @@
 
 namespace astro
 {
+	class Program;
+
 	class Game
 	{
 
@@ -16,6 +18,8 @@ namespace astro
 		void render();
 
 	private:
+
+		Program * program;
 
 		Game(const Game & game);
 		Game & operator = (const Game & game);
