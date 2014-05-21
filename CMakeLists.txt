@@ -46,3 +46,9 @@ add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
 	${CMAKE_CURRENT_SOURCE_DIR}/src/shaders $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/shaders
 )
+
+# Copy assets to the distribution folder
+add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+	${CMAKE_CURRENT_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/assets
+)
