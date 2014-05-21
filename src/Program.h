@@ -14,8 +14,8 @@ namespace astro
 		~Program();
 
 		GLuint getHandle() const;
-		GLuint getAttribute(const GLchar* attributeName) const;
-		GLuint getUniform(const GLchar* uniformName) const;
+		GLint getAttribute(const GLchar* attributeName) const;
+		GLint getUniform(const GLchar* uniformName) const;
 
 	private:
 

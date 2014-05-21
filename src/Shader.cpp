@@ -26,7 +26,6 @@ namespace astro
 
 		build(buffer.str(), type);
 
-		Logger::debug("Calling constructor");
 		refCount = new unsigned;
 		*refCount = 1;
 	}
@@ -35,13 +34,11 @@ namespace astro
 		handle(other.handle),
 		refCount(other.refCount)
 	{
-		Logger::debug("Calling copy constructor");
 		retain();
 	}
 
 	Shader & Shader::operator = (const Shader & other)
 	{
-		Logger::debug("Calling assignment operator");
 		release();
 		handle = other.handle;
 		refCount = other.refCount;
@@ -51,7 +48,6 @@ namespace astro
 
 	Shader::~Shader()
 	{
-		Logger::debug("Calling destructor");
 		if (refCount)
 		{
 			release();
@@ -115,18 +111,16 @@ namespace astro
 	void Shader::retain()
 	{
 		assert(refCount);
-		Logger::debug("Retaining once");
 		*refCount += 1;
 	}
 
 	void Shader::release()
 	{
 		assert(refCount && *refCount > 0);
-		Logger::debug("Releasing once");
 		*refCount -= 1;
 		if (*refCount == 0)
 		{
-			Logger::debug("Deleting entirely");
+			Logger::debug("Shader deleted");
 			glDeleteShader(handle);
 			handle = 0;
 			delete refCount;

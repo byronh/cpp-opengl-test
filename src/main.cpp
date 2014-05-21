@@ -1,5 +1,6 @@
-#include "Exception.h"
 #include "Game.h"
+#include "Exception.h"
+#include "Logger.h"
 
 #include "OpenGL.h"
 #include <GLFW/glfw3.h>
@@ -24,7 +25,7 @@ void run()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create GLFW window as OpenGL context
-	window = glfwCreateWindow(256, 128, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(1280, 768, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -71,11 +72,12 @@ int main(void)
 	}
 	catch (astro::Exception & e)
 	{
-		std::cerr << e.what() << std::endl;
-		std::cerr << "Press [ENTER] to continue... ";
+		astro::Logger::error(e.what());
+		astro::Logger::error("Press [ENTER] to continue...");
 		std::cin.get();
 		return EXIT_FAILURE;
 	}
+
 	return EXIT_SUCCESS;
 
 }

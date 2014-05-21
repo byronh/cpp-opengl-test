@@ -61,4 +61,38 @@ namespace astro
 	{
 		return handle;
 	}
+
+	GLint Program::getAttribute(const GLchar* attributeName) const
+	{
+		if (!attributeName)
+		{
+			throw Exception("Attribute name must not be null");
+		}
+
+		GLint attrib = glGetAttribLocation(handle, attributeName);
+
+		if (attrib == -1)
+		{
+			throw Exception(std::string("Program attribute not found: ") + attributeName);
+		}
+
+		return attrib;
+	}
+
+	GLint Program::getUniform(const GLchar* uniformName) const
+	{
+		if (!uniformName)
+		{
+			throw Exception("Uniform name must not be null");
+		}
+
+		GLint uniform = glGetUniformLocation(handle, uniformName);
+
+		if (uniform == -1)
+		{
+			throw Exception(std::string("Program uniform not found: ") + uniformName);
+		}
+
+		return uniform;
+	}
 }
