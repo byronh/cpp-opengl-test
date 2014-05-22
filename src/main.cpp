@@ -44,7 +44,11 @@ void run()
 		glfwTerminate();
 		throw astro::Exception("Failed to load extensions for OpenGL 3.3!");
 	}
+
 	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+	std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
+	std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 
 	astro::Game game;
 	game.setup();

@@ -17,9 +17,9 @@ namespace astro
 		typedef std::vector<Shader> vector;
 		enum ShaderType
 		{
-			VERTEX,
-			GEOMETRY,
-			FRAGMENT,
+			SHADERTYPE_VERTEX,
+			SHADERTYPE_GEOMETRY,
+			SHADERTYPE_FRAGMENT,
 		};
 		Shader(const std::string & filePath, ShaderType type);
 		Shader(const Shader & other);
@@ -41,4 +41,5 @@ namespace astro
 		void release();
 
 	};
+
 }

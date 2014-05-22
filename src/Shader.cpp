@@ -8,6 +8,7 @@
 
 namespace astro
 {
+
 	Shader::Shader(const std::string & relativePath, ShaderType type) :
 		handle(0),
 		refCount(NULL)
@@ -65,13 +66,13 @@ namespace astro
 
 		switch (type)
 		{
-		case Shader::VERTEX:
+		case Shader::SHADERTYPE_VERTEX:
 			shaderType = GL_VERTEX_SHADER;
 			break;
-		case Shader::GEOMETRY:
+		case Shader::SHADERTYPE_GEOMETRY:
 			shaderType = GL_GEOMETRY_SHADER;
 			break;
-		case Shader::FRAGMENT:
+		case Shader::SHADERTYPE_FRAGMENT:
 			shaderType = GL_FRAGMENT_SHADER;
 			break;
 		default:
@@ -127,4 +128,5 @@ namespace astro
 			refCount = NULL;
 		}
 	}
+
 }

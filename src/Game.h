@@ -2,9 +2,15 @@
 
 #include "OpenGL.h"
 
-namespace astro
+namespace tdogl
 {
 	class Program;
+}
+
+namespace astro
+{
+
+	class Texture;
 
 	class Game
 	{
@@ -21,7 +27,9 @@ namespace astro
 
 	private:
 
-		Program * program;
+		tdogl::Program * program;
+		Texture * texture;
+
 		GLuint vertexArrayObject;
 		GLuint vertexBufferObject;
 
@@ -29,4 +37,5 @@ namespace astro
 		Game & operator = (const Game & game);
 
 	};
+
 }
