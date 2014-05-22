@@ -12,7 +12,7 @@ namespace astro
 		handle(0),
 		refCount(NULL)
 	{
-		std::string absolutePath = EXECUTABLE_DIRECTORY + relativePath;
+		std::string absolutePath = SHADER_DIR + relativePath;
 
 		std::ifstream stream;
 		stream.open(absolutePath.c_str(), std::ios::in | std::ios::binary);

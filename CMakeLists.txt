@@ -39,16 +39,22 @@ target_link_libraries (${EXECUTABLE_NAME} glfw)
 target_link_libraries (${EXECUTABLE_NAME} ${GLFW_LIBRARIES})
 
 # Define preprocessor macros
-add_definitions (-DEXECUTABLE_DIRECTORY="$<TARGET_FILE_DIR:${EXECUTABLE_NAME}>")
+IF (TRUE)
+	add_definitions (-DASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets/")
+	add_definitions (-DSHADER_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/shaders/")
+ELSE ()
+	add_definitions (-DASSET_DIR="$<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/")
+	add_definitions (-DSHADER_DIR="$<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/")
 
-# Copy shader files to the distribution folder
-add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${CMAKE_CURRENT_SOURCE_DIR}/src/shaders $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/shaders
-)
+	# Copy shader files to the distribution folder
+	add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${CMAKE_CURRENT_SOURCE_DIR}/src/shaders $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/shaders
+	)
 
-# Copy assets to the distribution folder
-add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	${CMAKE_CURRENT_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/assets
-)
+	# Copy assets to the distribution folder
+	add_custom_command(TARGET ${EXECUTABLE_NAME} PRE_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${CMAKE_CURRENT_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/assets
+	)
+ENDIF()

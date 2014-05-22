@@ -7,8 +7,8 @@ namespace astro
 	void Game::setup()
 	{
 		// Load shaders
-		Shader vert("/shaders/basic.vert.glsl", Shader::VERTEX);
-		Shader frag("/shaders/basic.frag.glsl", Shader::FRAGMENT);
+		Shader vert("basic.vert.glsl", Shader::VERTEX);
+		Shader frag("basic.frag.glsl", Shader::FRAGMENT);
 
 		Shader::vector shaders;
 		shaders.push_back(vert);
