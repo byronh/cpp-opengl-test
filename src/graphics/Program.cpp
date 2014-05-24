@@ -71,6 +71,9 @@ namespace astro
 	{
 		if (handle != 0)
 		{
+			if (active) {
+				throw Exception("Attempted to delete an active program");
+			}
 			glDeleteProgram(handle);
 		}
 	}
@@ -100,9 +103,9 @@ namespace astro
 		return handle;
 	}
 
-	Uniform Program::getUniform(const std::string & name) const
+	Handle Program::getUniformLocation(const std::string & name) const
 	{
-		Uniform location = glGetUniformLocation(handle, name.c_str());
+		Handle location = glGetUniformLocation(handle, name.c_str());
 		if (location == -1)
 		{
 			throw Exception("Invalid uniform location - doesn't exist or may have been removed by optimization");

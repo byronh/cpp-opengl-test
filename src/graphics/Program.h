@@ -4,6 +4,8 @@
 
 #include "Shader.h"
 
+#include <map>
+
 namespace astro
 {
 
@@ -19,19 +21,16 @@ namespace astro
 		void end();
 
 		Handle getHandle() const;
-		Uniform getUniform(const std::string & name) const;
-
-		//void setUniform1f()
+		Handle getUniformLocation(const std::string & name) const;
 
 	private:
 
+		bool active;
 		Handle handle;
 		
 		Program();
 		Program(const Program & other);
 		const Program & operator = (const Program & other);
-
-		bool active;
 
 	};
 

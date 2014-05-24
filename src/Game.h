@@ -22,12 +22,13 @@ namespace astro
 
 	private:
 
+		float scale;
+		Handle worldUniform;
+
 		Handle vertexArrayObject;
 		Handle vertexBufferObject;
 		
 		Program * program;
-		float scale;
-		Uniform worldUniform;
 
 		Game(const Game & game);
 		Game & operator = (const Game & game);

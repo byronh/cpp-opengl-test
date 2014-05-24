@@ -16,11 +16,12 @@ void run()
 	}
 
 	// Use OpenGL version 3.3 - forward compatibility needed for Mac OS X
+#ifdef APPLE
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+#endif
 
 	// Create GLFW window as OpenGL context
 	window = glfwCreateWindow(1280, 768, "Hello World", NULL, NULL);
@@ -30,7 +31,7 @@ void run()
 		throw astro::Exception("Failed to create window! Your hardware must support OpenGL 3.3 or higher.");
 	}
 	glfwMakeContextCurrent(window);
-	glfwSetWindowPos(window, 2300, 200);
+	//(window, 2300, 200);
 
 	// Enable vertical sync
 	glfwSwapInterval(1);
