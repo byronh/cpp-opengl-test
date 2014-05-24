@@ -33,6 +33,7 @@ void run()
 		throw astro::Exception("Failed to create window! Your hardware must support OpenGL 3.3 or higher.");
 	}
 	glfwMakeContextCurrent(window);
+	glfwSetWindowPos(window, 2300, 200);
 
 	// Enable vertical sync
 	glfwSwapInterval(1);
