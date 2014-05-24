@@ -16,6 +16,7 @@ namespace astro
 		~Program();
 
 		Handle getHandle() const;
+		Uniform getUniform(const std::string & name) const;
 
 	private:
 

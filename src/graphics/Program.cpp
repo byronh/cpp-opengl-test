@@ -79,4 +79,14 @@ namespace astro
 		return handle;
 	}
 
+	Uniform Program::getUniform(const std::string & name) const
+	{
+		Uniform location = glGetUniformLocation(handle, name.c_str());
+		if (location == -1)
+		{
+			throw Exception("Invalid uniform location - doesn't exist or may have been removed by optimization");
+		}
+		return location;
+	}
+
 }

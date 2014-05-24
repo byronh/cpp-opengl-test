@@ -10,6 +10,7 @@ namespace astro
 {
 
 	typedef GLuint Handle;
+	typedef GLuint Uniform;
 	typedef glm::vec3 Vector3f;
 
 }

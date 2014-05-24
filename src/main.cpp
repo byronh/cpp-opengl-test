@@ -51,12 +51,15 @@ void run()
 	astro::Game game;
 	game.setup();
 
+	double lastTime = glfwGetTime();
+	double currentTime = 0;
+
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		static double lastTime = glfwGetTime();
-		double currentTime = glfwGetTime();
+		currentTime = glfwGetTime();
 		float deltaTime = float(currentTime - lastTime);
+		lastTime = currentTime;
 
 		if (deltaTime > 0)
 		{

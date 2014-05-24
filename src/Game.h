@@ -26,6 +26,8 @@ namespace astro
 		Handle vertexBufferObject;
 		
 		Program * program;
+		float scale;
+		Uniform scaleUniform;
 
 		Game(const Game & game);
 		Game & operator = (const Game & game);

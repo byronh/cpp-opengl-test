@@ -2,11 +2,14 @@
 
 #include "graphics/Program.h"
 
+#include <iostream>
+
 namespace astro
 {
 
 	void Game::setup()
 	{
+		// Build shader program
 		Shader::Array shaders;
 
 		Shader vertexShader("basic.vert.glsl", Shader::SHADERTYPE_VERTEX);
@@ -17,7 +20,11 @@ namespace astro
 
 		program = new Program(shaders);
 
+		// Get uniform
+		scale = 0.0f;
+		scaleUniform = program->getUniform("gScale");
 
+		// Draw triangle
 		Vector3f vertices[3];
 		vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);
 		vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);
@@ -30,7 +37,7 @@ namespace astro
 
 	void Game::update(float delta)
 	{
-
+		scale += 0.1f * delta;
 	}
 
 	void Game::render()
@@ -40,6 +47,8 @@ namespace astro
 
 		glUseProgram(program->getHandle());
 		{
+			glUniform1f(scaleUniform, glm::sin(scale));
+
 			glEnableVertexAttribArray(0);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
