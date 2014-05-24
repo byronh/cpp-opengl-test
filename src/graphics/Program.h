@@ -1,7 +1,8 @@
 #pragma once
 
+#include "../core/Core.h"
+
 #include "Shader.h"
-#include <vector>
 
 namespace astro
 {
@@ -11,14 +12,14 @@ namespace astro
 
 	public:
 
-		Program(const std::vector<Shader> & shaders);
+		Program(const Shader::Array & shaders);
 		~Program();
 
-		GLuint getHandle() const;
+		Handle getHandle() const;
 
 	private:
 
-		GLuint handle;
+		Handle handle;
 		
 		Program();
 		Program(const Program & other);

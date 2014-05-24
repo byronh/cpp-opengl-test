@@ -1,11 +1,6 @@
 #include "Game.h"
-#include "core/Exception.h"
+
 #include "graphics/Program.h"
-
-#include "glm/vec3.hpp"
-
-#include <iostream>
-#include <vector>
 
 namespace astro
 {

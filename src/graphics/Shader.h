@@ -1,8 +1,7 @@
 #pragma once
 
-#include "../utils/OpenGL.h"
+#include "../core/Core.h"
 
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -15,22 +14,24 @@ namespace astro
 	public:
 
 		typedef std::vector<Shader> Array;
+
 		enum ShaderType
 		{
 			SHADERTYPE_VERTEX,
 			SHADERTYPE_GEOMETRY,
 			SHADERTYPE_FRAGMENT,
 		};
+
 		Shader(const std::string & filePath, ShaderType type);
 		Shader(const Shader & other);
 		Shader & operator = (const Shader & other);
 		~Shader();
 
-		GLuint getHandle() const;
+		Handle getHandle() const;
 
 	private:
 
-		GLuint handle;
+		Handle handle;
 		unsigned * refCount;
 
 		void build(const std::string & code, ShaderType type);

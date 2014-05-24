@@ -1,6 +1,4 @@
 #include "Shader.h"
-#include "../core/Exception.h"
-#include "../core/Logger.h"
 
 #include <assert.h>
 #include <fstream>
@@ -19,7 +17,7 @@ namespace astro
 		stream.open(absolutePath.c_str(), std::ios::in | std::ios::binary);
 		if (!stream.is_open())
 		{
-			throw astro::Exception(std::string("Failed to open shader file: ") + absolutePath);
+			throw Exception(std::string("Failed to open shader file: ") + absolutePath);
 		}
 
 		std::stringstream buffer;
@@ -55,7 +53,7 @@ namespace astro
 		}
 	}
 
-	GLuint Shader::getHandle() const
+	Handle Shader::getHandle() const
 	{
 		return handle;
 	}

@@ -1,14 +1,11 @@
 #pragma once
 
-#include "utils/OpenGL.h"
-#include "glm/glm.hpp"
+#include "core/Core.h"
 
 namespace astro
 {
 
 	class Program;
-
-	typedef glm::vec3 Vector3f;
 
 	class Game
 	{
@@ -25,8 +22,8 @@ namespace astro
 
 	private:
 
-		GLuint vertexArrayObject;
-		GLuint vertexBufferObject;
+		Handle vertexArrayObject;
+		Handle vertexBufferObject;
 		
 		Program * program;
 

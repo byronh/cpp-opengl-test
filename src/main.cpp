@@ -1,12 +1,9 @@
-#include "Game.h"
-#include "core/Exception.h"
-#include "core/Logger.h"
+#include "core/Core.h"
 
-#include "utils/OpenGL.h"
+#include "Game.h"
 #include <GLFW/glfw3.h>
 
 #include <iostream>
-#include <stdlib.h>
 
 void run()
 {

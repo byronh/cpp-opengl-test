@@ -1,10 +1,9 @@
 #include "Program.h"
-#include "../core/Exception.h"
 
 namespace astro
 {
 
-	Program::Program(const std::vector<astro::Shader> & shaders) :
+	Program::Program(const Shader::Array & shaders) :
 		handle(0)
 	{
 		if (shaders.size() <= 0)
@@ -57,7 +56,7 @@ namespace astro
 		}
 	}
 
-	GLuint Program::getHandle() const
+	Handle Program::getHandle() const
 	{
 		return handle;
 	}
