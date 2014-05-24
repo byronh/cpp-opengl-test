@@ -14,7 +14,7 @@ namespace astro
 
 	public:
 
-		typedef std::vector<Shader> vector;
+		typedef std::vector<Shader> Array;
 		enum ShaderType
 		{
 			SHADERTYPE_VERTEX,

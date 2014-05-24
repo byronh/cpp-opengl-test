@@ -12,7 +12,7 @@ namespace astro
 
 	void Game::setup()
 	{
-		std::vector<Shader> shaders;
+		Shader::Array shaders;
 
 		Shader vertexShader("basic.vert.glsl", Shader::SHADERTYPE_VERTEX);
 		Shader fragmentShader("basic.frag.glsl", Shader::SHADERTYPE_FRAGMENT);
@@ -23,10 +23,10 @@ namespace astro
 		program = new Program(shaders);
 
 
-		glm::vec3 vertices[3];
-		vertices[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
-		vertices[1] = glm::vec3(1.0f, -1.0f, 0.0f);
-		vertices[2] = glm::vec3(0.0f, 1.0f, 0.0f);
+		Vector3f vertices[3];
+		vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);
+		vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);
+		vertices[2] = Vector3f(0.0f, 1.0f, 0.0f);
 
 		glGenBuffers(1, &vertexBufferObject);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
