@@ -16,9 +16,9 @@ namespace astro
 		~Game() {};
 
 		void setup();
-		void update();
+		void update() {};
 		void render();
-		void shutdown();
+		void shutdown() {};
 
 	private:
 
