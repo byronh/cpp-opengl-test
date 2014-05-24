@@ -22,7 +22,7 @@ namespace astro
 
 		// Get uniform
 		scale = 0.0f;
-		scaleUniform = program->getUniform("gScale");
+		worldUniform = program->getUniform("gWorld");
 
 		// Draw triangle
 		Vector3f vertices[3];
@@ -45,9 +45,9 @@ namespace astro
 		glClearColor(0.0f, 0.5f, 0.25f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glUseProgram(program->getHandle());
+		program->begin();
 		{
-			glUniform1f(scaleUniform, glm::sin(scale));
+			//glUniform1f(worldUniform, glm::sin(scale));
 
 			glEnableVertexAttribArray(0);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
@@ -57,6 +57,6 @@ namespace astro
 
 			glDisableVertexAttribArray(0);
 		}
-		glUseProgram(0);
+		program->end();
 	}
 }

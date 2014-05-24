@@ -15,8 +15,13 @@ namespace astro
 		Program(const Shader::Array & shaders);
 		~Program();
 
+		void begin();
+		void end();
+
 		Handle getHandle() const;
 		Uniform getUniform(const std::string & name) const;
+
+		//void setUniform1f()
 
 	private:
 
@@ -25,6 +30,8 @@ namespace astro
 		Program();
 		Program(const Program & other);
 		const Program & operator = (const Program & other);
+
+		bool active;
 
 	};
 

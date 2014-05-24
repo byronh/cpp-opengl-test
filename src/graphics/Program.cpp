@@ -4,7 +4,8 @@ namespace astro
 {
 
 	Program::Program(const Shader::Array & shaders) :
-		handle(0)
+		handle(0),
+		active(false)
 	{
 		if (shaders.size() <= 0)
 		{
@@ -72,6 +73,26 @@ namespace astro
 		{
 			glDeleteProgram(handle);
 		}
+	}
+
+	void Program::begin()
+	{
+		if (active)
+		{
+			throw Exception("Program already started");
+		}
+		glUseProgram(handle);
+		active = true;
+	}
+
+	void Program::end()
+	{
+		if (!active)
+		{
+			throw Exception("Must call begin() before end()");
+		}
+		glUseProgram(0);
+		active = false;
 	}
 
 	Handle Program::getHandle() const

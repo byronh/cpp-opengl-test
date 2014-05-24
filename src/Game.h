@@ -27,7 +27,7 @@ namespace astro
 		
 		Program * program;
 		float scale;
-		Uniform scaleUniform;
+		Uniform worldUniform;
 
 		Game(const Game & game);
 		Game & operator = (const Game & game);
