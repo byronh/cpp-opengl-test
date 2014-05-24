@@ -1,6 +1,6 @@
 #include "Bitmap.h"
-#include "Exception.h"
-#include "utils/stb_image.h"
+#include "../core/Exception.h"
+#include "../utils/stb_image.h"
 
 namespace astro
 {

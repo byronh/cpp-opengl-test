@@ -1,6 +1,6 @@
 #include "Game.h"
-#include "Exception.h"
-#include "Logger.h"
+#include "core/Exception.h"
+#include "core/Logger.h"
 
 #include "utils/OpenGL.h"
 #include <GLFW/glfw3.h>

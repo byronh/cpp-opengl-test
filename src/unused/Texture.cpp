@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "Exception.h"
+#include "../core/Exception.h"
 
 namespace astro
 {

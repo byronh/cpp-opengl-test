@@ -2,15 +2,8 @@
 
 #include "utils/OpenGL.h"
 
-namespace tdogl
-{
-	class Program;
-}
-
 namespace astro
 {
-
-	class Texture;
 
 	class Game
 	{
@@ -26,9 +19,6 @@ namespace astro
 		void shutdown();
 
 	private:
-
-		tdogl::Program * program;
-		Texture * texture;
 
 		GLuint vertexArrayObject;
 		GLuint vertexBufferObject;

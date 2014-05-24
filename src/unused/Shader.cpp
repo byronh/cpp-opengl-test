@@ -1,6 +1,6 @@
 #include "Shader.h"
-#include "Exception.h"
-#include "Logger.h"
+#include "../core/Exception.h"
+#include "../core/Logger.h"
 
 #include <assert.h>
 #include <fstream>
