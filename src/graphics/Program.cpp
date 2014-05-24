@@ -46,6 +46,24 @@ namespace astro
 			handle = 0;
 			throw Exception(msg);
 		}
+
+		glValidateProgram(handle);
+		glGetProgramiv(handle, GL_VALIDATE_STATUS, &status);
+		if (status == GL_FALSE)
+		{
+			std::string msg("Failed to validate program: ");
+
+			GLint length;
+			glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &length);
+			char* log = new char[length + 1];
+			glGetProgramInfoLog(handle, length, NULL, log);
+			msg += log;
+			delete[] log;
+
+			glDeleteProgram(handle);
+			handle = 0;
+			throw Exception(msg);
+		}
 	}
 
 	Program::~Program()
