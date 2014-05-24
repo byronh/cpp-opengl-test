@@ -1,6 +1,6 @@
 #pragma once
 
-#include "OpenGL.h"
+#include "utils/OpenGL.h"
 
 namespace tdogl
 {

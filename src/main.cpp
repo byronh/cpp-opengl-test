@@ -2,7 +2,7 @@
 #include "Exception.h"
 #include "Logger.h"
 
-#include "OpenGL.h"
+#include "utils/OpenGL.h"
 #include <GLFW/glfw3.h>
 
 #include <iostream>

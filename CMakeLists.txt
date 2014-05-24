@@ -23,15 +23,23 @@ file (GLOB_RECURSE CPP_CODE
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
+
+# Organize C++ source files into folders
+foreach(f ${CPP_CODE})
+	file(RELATIVE_PATH SOURCE_GROUP ${CMAKE_CURRENT_SOURCE_DIR}/src ${f})
+	set(SOURCE_GROUP "game/${SOURCE_GROUP}")
+	string(REGEX REPLACE "(.*)(/[^/]*)$" "\\1" SOURCE_GROUP ${SOURCE_GROUP})
+	string(REPLACE / \\ SOURCE_GROUP ${SOURCE_GROUP})
+	source_group("${SOURCE_GROUP}" FILES ${f})
+endforeach()
+
+# Organize other files into folders
 file (GLOB_RECURSE SHADER_CODE
 	${CMAKE_CURRENT_SOURCE_DIR}/src/shaders/*.glsl
 )
-
-# Organize source files into folders
-source_group ("game" FILES ${CPP_CODE})
 source_group ("shaders" FILES ${SHADER_CODE})
 
-# Create executable from C++ source code only
+# Create executable
 add_executable (${EXECUTABLE_NAME} ${CPP_CODE} ${SHADER_CODE})
 
 # Libraries that need to be linked to the executable
