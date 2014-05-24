@@ -28,6 +28,11 @@ namespace astro
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	}
 
+	void Game::update(float delta)
+	{
+
+	}
+
 	void Game::render()
 	{
 		glClearColor(0.0f, 0.5f, 0.25f, 0.0f);

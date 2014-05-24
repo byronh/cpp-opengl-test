@@ -54,7 +54,14 @@ void run()
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		game.update();
+		static double lastTime = glfwGetTime();
+		double currentTime = glfwGetTime();
+		float deltaTime = float(currentTime - lastTime);
+
+		if (deltaTime > 0)
+		{
+			game.update(deltaTime);
+		}
 		game.render();
 
 		glfwSwapBuffers(window);
