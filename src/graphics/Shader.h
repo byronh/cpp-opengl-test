@@ -30,7 +30,6 @@ namespace astro
 
 	private:
 
-		// TODO hide implementation
 		GLuint handle;
 		unsigned * refCount;
 

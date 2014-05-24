@@ -1,10 +1,8 @@
 #version 330
 
-/*layout(location = 0)*/ in vec4 vert;
-in vec2 vertTexCoord;
-out vec2 fragTexCoord;
+layout (location = 0) in vec3 Position;
 
-void main() {
-	fragTexCoord = vertTexCoord;
-    gl_Position = vert;
+void main()
+{
+    gl_Position = vec4(0.5 * Position.x, 0.5 * Position.y, Position.z, 1.0);
 }

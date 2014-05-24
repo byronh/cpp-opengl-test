@@ -121,7 +121,6 @@ namespace astro
 		*refCount -= 1;
 		if (*refCount == 0)
 		{
-			Logger::debug("Shader deleted");
 			glDeleteShader(handle);
 			handle = 0;
 			delete refCount;

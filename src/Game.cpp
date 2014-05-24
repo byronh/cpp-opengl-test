@@ -1,13 +1,27 @@
 #include "Game.h"
+#include "core/Exception.h"
+#include "graphics/Program.h"
 
 #include "glm/vec3.hpp"
 
 #include <iostream>
+#include <vector>
 
 namespace astro
 {
+
 	void Game::setup()
 	{
+		std::vector<Shader> shaders;
+
+		Shader vertexShader("basic.vert.glsl", Shader::SHADERTYPE_VERTEX);
+		Shader fragmentShader("basic.frag.glsl", Shader::SHADERTYPE_FRAGMENT);
+
+		shaders.push_back(vertexShader);
+		shaders.push_back(fragmentShader);
+
+		program = new Program(shaders);
+
 		glm::vec3 vertices[3];
 		vertices[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
 		vertices[1] = glm::vec3(1.0f, -1.0f, 0.0f);
