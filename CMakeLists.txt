@@ -9,12 +9,20 @@ SET (GLFW_BUILD_TESTS OFF CACHE BOOL "Build the GLFW example programs")
 SET (GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation")
 SET (GLFW_INSTALL OFF CACHE BOOL "Generate the GLFW installation target")
 
-# Libraries that need to be compiled by CMake
+# Subprojects
 add_subdirectory (lib/glfw EXCLUDE_FROM_ALL)
+
+# Static libraries
+file (GLOB_RECURSE SOIL_SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/soil/src/*.h
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/soil/src/*.c
+)
+add_library(soil STATIC ${SOIL_SOURCES})
 
 # Libraries that need to be added to the include path
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/soil/src)
 
 # Source code files used in the executable
 file (GLOB_RECURSE CPP_CODE
@@ -45,6 +53,7 @@ add_executable (${EXECUTABLE_NAME} ${CPP_CODE} ${SHADER_CODE})
 # Libraries that need to be linked to the executable
 target_link_libraries (${EXECUTABLE_NAME} glfw)
 target_link_libraries (${EXECUTABLE_NAME} ${GLFW_LIBRARIES})
+target_link_libraries (${EXECUTABLE_NAME} soil)
 
 # Define preprocessor macros
 IF (TRUE)
