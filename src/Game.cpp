@@ -35,18 +35,6 @@ namespace astro
 		glGenBuffers(1, &vertexBufferObject);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		GLuint tex_2d = SOIL_load_OGL_texture
-			(
-			"img.png",
-			SOIL_LOAD_AUTO,
-			SOIL_CREATE_NEW_ID,
-			SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
-			);
-		if (0 == tex_2d)
-		{
-			printf("SOIL loading error: '%s'\n", SOIL_last_result());
-		}
 	}
 
 	void Game::update(float delta)
