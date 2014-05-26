@@ -4,6 +4,3 @@
 [submodule "lib/glm"]
 	path = lib/glm
 	url = git@github.com:g-truc/glm.git
-[submodule "lib/soil"]
-	path = lib/soil
-	url = git@github.com:kbranigan/Simple-OpenGL-Image-Library
