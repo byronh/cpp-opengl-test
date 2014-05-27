@@ -18,7 +18,7 @@ namespace astro
 		void setup();
 		void update(float delta);
 		void render();
-		void shutdown() {};
+		void shutdown();
 
 	private:
 

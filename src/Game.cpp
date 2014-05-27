@@ -81,4 +81,12 @@ namespace astro
 		}
 		program->end();
 	}
+
+	void Game::shutdown()
+	{
+		glDeleteBuffers(1, &vertexBufferObject);
+		glDeleteBuffers(1, &vertexArrayObject);
+		glDeleteBuffers(1, &indexBufferObject);
+		delete program;
+	}
 }

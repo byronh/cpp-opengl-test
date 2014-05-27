@@ -77,6 +77,7 @@ void run()
 	game.shutdown();
 	glfwDestroyWindow(window);
 	glfwTerminate();
+	std::cin.get();
 }
 
 int main(void)
