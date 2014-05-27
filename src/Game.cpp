@@ -49,9 +49,9 @@ namespace astro
 
 		Matrix4f World;
 
-		World[0][0] = 1.0f; World[0][1] = 0.0f; World[0][2] = 0.0f; World[0][3] = glm::sin(scale);
-		World[1][0] = 0.0f; World[1][1] = 1.0f; World[1][2] = 0.0f; World[1][3] = 0.0f;
-		World[2][0] = 0.0f; World[2][1] = 0.0f; World[2][2] = 1.0f; World[2][3] = 0.0f;
+		World[0][0] = glm::sin(scale); World[0][1] = 0.0f; World[0][2] = 0.0f; World[0][3] = 0.0f;
+		World[1][0] = 0.0f; World[1][1] = glm::sin(scale); World[1][2] = 0.0f; World[1][3] = 0.0f;
+		World[2][0] = 0.0f; World[2][1] = 0.0f; World[2][2] = glm::sin(scale); World[2][3] = 0.0f;
 		World[3][0] = 0.0f; World[3][1] = 0.0f; World[3][2] = 0.0f; World[3][3] = 1.0f;
 
 		program->begin();
