@@ -26,11 +26,22 @@ namespace astro
 		scale = 0.0f;
 		worldUniform = program->getUniformLocation("gWorld");
 
-		// Draw triangle
-		Vector3f vertices[3];
+		Vector3f vertices[4];
 		vertices[0] = Vector3f(-1.0f, -1.0f, 0.0f);
-		vertices[1] = Vector3f(1.0f, -1.0f, 0.0f);
-		vertices[2] = Vector3f(0.0f, 1.0f, 0.0f);
+		vertices[1] = Vector3f(0.0f, -1.0f, 1.0f);
+		vertices[2] = Vector3f(1.0f, -1.0f, 0.0f);
+		vertices[3] = Vector3f(0.0f, 1.0f, 0.0f);
+
+		unsigned int indices[] = {
+			0, 3, 1,
+			1, 3, 2,
+			2, 3, 0,
+			0, 1, 2
+		};
+
+		glGenBuffers(1, &indexBufferObject);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		glGenBuffers(1, &vertexBufferObject);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
@@ -61,8 +72,10 @@ namespace astro
 			glEnableVertexAttribArray(0);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
 
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+			//glDrawArrays(GL_TRIANGLES, 0, 3);
+			glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 
 			glDisableVertexAttribArray(0);
 		}

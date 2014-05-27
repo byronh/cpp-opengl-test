@@ -27,6 +27,7 @@ namespace astro
 
 		Handle vertexArrayObject;
 		Handle vertexBufferObject;
+		Handle indexBufferObject;
 		
 		Program * program;
 
