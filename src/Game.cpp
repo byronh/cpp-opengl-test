@@ -1,7 +1,9 @@
 #include "Game.h"
 
 #include "graphics/Camera.h"
+#include "graphics/Mesh.h"
 #include "graphics/Program.h"
+#include "graphics/VertexAttributes.h"
 
 #include <iostream>
 
@@ -32,6 +34,9 @@ namespace astro
 		);
 
 		MVP = camera->getProjectionMatrix() * camera->getViewMatrix() * model;
+
+		// Create mesh
+		Mesh* mesh = new Mesh(VertexAttributes::ATTRIBUTETYPE_POSITION);
 
 		glGenVertexArrays(1, &vertexArrayObject);
 		glBindVertexArray(vertexArrayObject);
