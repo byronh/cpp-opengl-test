@@ -7,11 +7,13 @@ namespace astro
 	{
 
 	public:
+
 		Mesh();
 		~Mesh();
 
 	private:
-		Vector3f vertices[];
+
+		//
 
 	};
 

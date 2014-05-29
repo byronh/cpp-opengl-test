@@ -23,6 +23,7 @@ void run()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 #endif
+	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	// Create GLFW window as OpenGL context
 	window = glfwCreateWindow(1280, 768, "Hello World", NULL, NULL);
@@ -32,7 +33,6 @@ void run()
 		throw astro::Exception("Failed to create window! Your hardware must support OpenGL 3.3 or higher.");
 	}
 	glfwMakeContextCurrent(window);
-	//(window, 2300, 200);
 
 	// Enable vertical sync
 	glfwSwapInterval(1);
@@ -77,7 +77,6 @@ void run()
 	game.shutdown();
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	std::cin.get();
 }
 
 int main(void)
@@ -88,8 +87,8 @@ int main(void)
 	}
 	catch (astro::Exception & e)
 	{
-		astro::Logger::error(e.what());
-		astro::Logger::error("Press [ENTER] to continue...");
+		std::cerr << e.what() << std::endl;
+		std::cerr << "Press [ENTER] to continue..." << std::endl;
 		std::cin.get();
 		return EXIT_FAILURE;
 	}

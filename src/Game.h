@@ -6,6 +6,7 @@ namespace astro
 {
 
 	class Program;
+	class Camera;
 
 	class Game
 	{
@@ -22,15 +23,18 @@ namespace astro
 
 	private:
 
-		float scale;
-		Handle worldUniform;
+		Program * program;
+		Camera * camera;
+
+		Matrix4f model;
+		Matrix4f MVP;
+
+		Handle MVPuniform;
 
 		Handle vertexArrayObject;
 		Handle vertexBufferObject;
 		Handle indexBufferObject;
 		
-		Program * program;
-
 		Game(const Game & game);
 		Game & operator = (const Game & game);
 
