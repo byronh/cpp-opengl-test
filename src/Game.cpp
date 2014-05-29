@@ -13,16 +13,7 @@ namespace astro
 	void Game::setup()
 	{
 		// Build shader program
-		Shader::Array shaders;
-
-		Shader vertexShader("basic.vert.glsl", Shader::SHADERTYPE_VERTEX);
-		Shader fragmentShader("basic.frag.glsl", Shader::SHADERTYPE_FRAGMENT);
-
-		shaders.push_back(vertexShader);
-		shaders.push_back(fragmentShader);
-
-		program = new Program(shaders);
-
+		program = new Program("basic.vert.glsl", "basic.frag.glsl");
 		MVPuniform = program->getUniformLocation("MVP");
 
 		// Setup camera
