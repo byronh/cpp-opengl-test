@@ -4,7 +4,7 @@
 
 #include "Shader.h"
 
-#include <map>
+#include <string>
 
 namespace astro
 {
@@ -14,19 +14,21 @@ namespace astro
 
 	public:
 
-		Program(const Shader::Array & shaders);
+		Program(const std::string & vertexShaderFile, const std::string & fragmentShaderFile);
 		~Program();
 
 		void begin();
 		void end();
 
-		Handle getHandle() const;
-		Handle getUniformLocation(const std::string & name) const;
+		const Handle getHandle() const;
+		const Handle getUniformLocation(const std::string & name) const;
 
 	private:
 
 		bool active;
 		Handle handle;
+
+		void init(const Shader::Array & shaders);
 		
 		Program();
 		Program(const Program & other);
