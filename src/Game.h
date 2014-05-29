@@ -32,7 +32,7 @@ namespace astro
 		Handle MVPuniform;
 
 		Handle vertexArrayObject;
-		Handle vertexBufferObject;
+		Handle vertexBufferObject, colorBufferObject;
 		Handle indexBufferObject;
 		
 		Game(const Game & game);
