@@ -10,9 +10,25 @@ namespace astro
 
 	}
 
+	Camera::Camera(const Matrix4f & projectionMatrix, const Matrix4f & viewMatrix)
+	{
+		projection = projectionMatrix;
+		view = viewMatrix;
+	}
+
 	Camera::~Camera()
 	{
 
+	}
+
+	const Matrix4f & Camera::getProjectionMatrix() const
+	{
+		return projection;
+	}
+
+	const Matrix4f & Camera::getViewMatrix() const
+	{
+		return view;
 	}
 
 }

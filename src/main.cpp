@@ -26,7 +26,7 @@ void run()
 	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	// Create GLFW window as OpenGL context
-	window = glfwCreateWindow(1280, 768, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(1280, 720, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();

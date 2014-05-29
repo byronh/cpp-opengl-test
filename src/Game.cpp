@@ -26,15 +26,12 @@ namespace astro
 		MVPuniform = program->getUniformLocation("MVP");
 
 		// Setup camera
-		camera = new Camera();
-		camera->projection = glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
-		camera->view = glm::lookAt(
-			Vector3f(4, 3, 3),
-			Vector3f(0, 0, 0),
-			Vector3f(0, 1, 0)
+		camera = new Camera(
+			glm::perspective(45.0f, 16.0f / 9.0f, 0.1f, 100.0f),
+			glm::lookAt(Vector3f(3, 4, 3), Vector3f(0, 0, 0), Vector3f(0, 1, 0))
 		);
 
-		MVP = camera->projection * camera->view * model;
+		MVP = camera->getProjectionMatrix() * camera->getViewMatrix() * model;
 
 		glGenVertexArrays(1, &vertexArrayObject);
 		glBindVertexArray(vertexArrayObject);
