@@ -5,8 +5,9 @@
 namespace astro
 {
 
-	class Program;
 	class Camera;
+	class Mesh;
+	class Program;
 
 	class Game
 	{
@@ -23,17 +24,14 @@ namespace astro
 
 	private:
 
-		Program * program;
 		Camera * camera;
+		Mesh * mesh;
+		Program * program;
 
 		Matrix4f model;
 		Matrix4f MVP;
 
 		Handle MVPuniform;
-
-		Handle vertexArrayObject;
-		Handle vertexBufferObject, colorBufferObject;
-		Handle indexBufferObject;
 		
 		Game(const Game & game);
 		Game & operator = (const Game & game);

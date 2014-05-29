@@ -3,11 +3,8 @@
 #include "graphics/Camera.h"
 #include "graphics/Mesh.h"
 #include "graphics/Program.h"
-#include "graphics/VertexAttributes.h"
 
 #include <iostream>
-
-#include "SOIL.h"
 
 namespace astro
 {
@@ -27,12 +24,22 @@ namespace astro
 		MVP = camera->getProjectionMatrix() * camera->getViewMatrix() * model;
 
 		// Create mesh
-		Mesh* mesh = new Mesh(VertexAttributes::ATTRIBUTETYPE_POSITION);
+		Vertex vertices[3];
+		vertices[0].position = Vector3f(-1, -1, 0);
+		vertices[1].position = Vector3f(1, -1, 0);
+		vertices[2].position = Vector3f(0, 1, 0);
+		vertices[0].color = Vector3f(1, 0, 0);
+		vertices[1].color = Vector3f(0, 1, 0);
+		vertices[2].color = Vector3f(0, 0, 1);
 
-		glGenVertexArrays(1, &vertexArrayObject);
-		glBindVertexArray(vertexArrayObject);
+		unsigned int indices[3] = { 0, 1, 2 };
 
-		const GLfloat vertices[] = {
+		VertexBuffer vb(vertices, vertices + sizeof(vertices) / sizeof(vertices[0]));
+		IndexBuffer ib(indices, indices + sizeof(indices) / sizeof(indices[0]));
+
+		mesh = new Mesh(vb, ib);
+
+		/*const GLfloat vertices[] = {
 			-1.0f, -1.0f, -1.0f,
 			-1.0f, -1.0f, 1.0f,
 			-1.0f, 1.0f, 1.0f,
@@ -108,21 +115,7 @@ namespace astro
 			0.673f, 0.211f, 0.457f,
 			0.820f, 0.883f, 0.371f,
 			0.982f, 0.099f, 0.879f
-		};
-
-		//unsigned int indices[] = { 0, 1, 2 };
-
-		glGenBuffers(1, &vertexBufferObject);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		glGenBuffers(1, &colorBufferObject);
-		glBindBuffer(GL_ARRAY_BUFFER, colorBufferObject);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
-
-		//glGenBuffers(1, &indexBufferObject);
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+		};*/
 
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LESS);
@@ -141,33 +134,15 @@ namespace astro
 		program->begin();
 		{
 			glUniformMatrix4fv(MVPuniform, 1, GL_FALSE, &MVP[0][0]);
-
-			glEnableVertexAttribArray(0);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-			glEnableVertexAttribArray(1);
-			glBindBuffer(GL_ARRAY_BUFFER, colorBufferObject);
-			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-			
-			//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-
-			glDrawArrays(GL_TRIANGLES, 0, 12*3);
-			//glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
-
-			glDisableVertexAttribArray(0);
-			glDisableVertexAttribArray(1);
+			mesh->render();
 		}
 		program->end();
 	}
 
 	void Game::shutdown()
 	{
-		glDeleteBuffers(1, &vertexBufferObject);
-		glDeleteBuffers(1, &vertexArrayObject);
-		glDeleteBuffers(1, &indexBufferObject);
-
 		delete camera;
+		delete mesh;
 		delete program;
 	}
 }
