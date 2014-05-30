@@ -9,7 +9,6 @@ layout (location = 7) in mat4 a_world;
 out vec2 v_textureCoords;
 out vec3 v_normal;
 out vec3 v_world;
-flat out int instanceID;
 
 void main() {
 
@@ -18,7 +17,5 @@ void main() {
 	v_world = (a_world * vec4(a_position, 0.0)).xyz;
 	
 	gl_Position = a_modelViewProjection * vec4(a_position, 1.0);
-	
-	instanceID = gl_InstanceID;
 }
 

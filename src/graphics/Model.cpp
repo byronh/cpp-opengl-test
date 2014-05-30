@@ -2,6 +2,7 @@
 #include "Texture.h"
 
 #include <assert.h>
+#include <iostream>
 
 #define INDEX_BUFFER 0    
 #define POS_VB       1
@@ -43,6 +44,7 @@ namespace astro
 		}
 
 		buildFromScene(scene);
+		std::cout << "Successfully loaded scene " + relativePath << std::endl;
 
 		glBindVertexArray(0);
 	}
@@ -122,6 +124,7 @@ namespace astro
 		for (unsigned int i = 0; i < meshes.size(); ++i)
 		{
 			buildMesh(scene->mMeshes[i], positions, normals, uvCoords, indices);
+			std::cout << "Successfully loaded mesh " << scene->mMeshes[i]->mName.C_Str() << std::endl;
 		}
 
 		buildTextures(scene);
