@@ -25,7 +25,7 @@ namespace astro
 		);
 
 		// Build objects
-		mesh = new Model("phoenix_ugv.md2");
+		model = new Model("phoenix_ugv.md2");
 
 		for (int i = 0; i < NUM_INSTANCES; ++i)
 		{
@@ -47,7 +47,7 @@ namespace astro
 
 		program->begin();
 		{
-			mesh->renderMeshes(NUM_INSTANCES, modelViewProjection, world);
+			model->renderMeshes(NUM_INSTANCES, modelViewProjection, world);
 		}
 		program->end();
 	}
@@ -55,7 +55,7 @@ namespace astro
 	void Game::shutdown()
 	{
 		delete camera;
-		delete mesh;
+		delete model;
 		delete program;
 	}
 }

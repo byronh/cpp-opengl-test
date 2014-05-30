@@ -27,7 +27,7 @@ namespace astro
 	private:
 
 		Camera * camera;
-		Model * mesh;
+		Model * model;
 		Program * program;
 
 		Matrix4f world[NUM_INSTANCES];
