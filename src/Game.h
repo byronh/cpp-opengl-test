@@ -6,7 +6,7 @@ namespace astro
 {
 
 	class Camera;
-	class Mesh;
+	class Model;
 	class Program;
 	class Texture;
 
@@ -26,9 +26,8 @@ namespace astro
 	private:
 
 		Camera * camera;
-		Mesh * mesh;
+		Model * mesh;
 		Program * program;
-		Texture * texture;
 
 		Matrix4f model;
 		Matrix4f modelViewProjection;

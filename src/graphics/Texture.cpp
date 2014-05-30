@@ -1,10 +1,12 @@
 #include "Texture.h"
 
+#include <iostream>
 #include <SOIL.h>
 
 namespace astro
 {
 
+	// TODO manage textures
 	Texture::Texture(const std::string & relativePath, TextureType type) :
 		handle(0)
 	{
@@ -30,6 +32,7 @@ namespace astro
 			throw Exception(message);
 		}
 
+		std::cout << "Successfully loaded texture " << relativePath << std::endl;
 		unbind();
 	}
 

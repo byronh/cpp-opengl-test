@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 namespace astro
@@ -24,6 +25,8 @@ namespace astro
 		buffer << stream.rdbuf();
 
 		build(buffer.str(), type);
+
+		std::cout << "Successfully loaded shader " << relativePath << std::endl;
 
 		refCount = new unsigned;
 		*refCount = 1;
