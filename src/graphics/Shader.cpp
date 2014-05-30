@@ -75,7 +75,6 @@ namespace astro
 			break;
 		default:
 			throw Exception("Invalid shader type specified");
-			break;
 		}
 
 		handle = glCreateShader(shaderType);

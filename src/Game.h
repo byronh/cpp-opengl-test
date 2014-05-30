@@ -8,6 +8,7 @@ namespace astro
 	class Camera;
 	class Mesh;
 	class Program;
+	class Texture;
 
 	class Game
 	{
@@ -27,11 +28,13 @@ namespace astro
 		Camera * camera;
 		Mesh * mesh;
 		Program * program;
+		Texture * texture;
 
 		Matrix4f model;
-		Matrix4f MVP;
+		Matrix4f modelViewProjection;
 
-		Handle MVPuniform;
+		Handle uModelViewProjection;
+		Handle uTexture;
 		
 		Game(const Game & game);
 		Game & operator = (const Game & game);

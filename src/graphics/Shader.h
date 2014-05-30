@@ -22,7 +22,7 @@ namespace astro
 			SHADERTYPE_FRAGMENT,
 		};
 
-		Shader(const std::string & filePath, ShaderType type);
+		Shader(const std::string & relativePath, ShaderType type);
 		Shader(const Shader & other);
 		Shader & operator = (const Shader & other);
 		~Shader();

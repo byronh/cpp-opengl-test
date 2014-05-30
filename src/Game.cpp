@@ -3,14 +3,12 @@
 #include "graphics/Camera.h"
 #include "graphics/Mesh.h"
 #include "graphics/Program.h"
+#include "graphics/Texture.h"
 
 #include <iostream>
-
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-
-#include <SOIL.h>
 
 namespace astro
 {
@@ -19,7 +17,8 @@ namespace astro
 	{
 		// Build shader program
 		program = new Program("basic.vert.glsl", "basic.frag.glsl");
-		MVPuniform = program->getUniformLocation("MVP");
+		uModelViewProjection = program->getUniformLocation("u_modelViewProjection");
+		uTexture = program->getUniformLocation("u_texture");
 
 		// Setup camera
 		camera = new Camera(
@@ -27,7 +26,7 @@ namespace astro
 			glm::lookAt(Vector3f(4, 3, 3), Vector3f(0, 0, 0), Vector3f(0, 1, 0))
 		);
 
-		MVP = camera->getProjectionMatrix() * camera->getViewMatrix() * model;
+		modelViewProjection = camera->getProjectionMatrix() * camera->getViewMatrix() * model;
 
 		//std::string sphereFile = ASSET_DIR + std::string("phoenix_ugv.md2");
 		//Assimp::Importer importer;
@@ -41,16 +40,7 @@ namespace astro
 		//	throw Exception("Failed to load " + sphereFile + ": " + importer.GetErrorString());
 		//}
 
-		//unsigned char* image;
-		//int width, height;
-		std::string imageFile = ASSET_DIR + std::string("hazard.png");
-		//image = SOIL_load_image(imageFile.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
-
-		Handle tex = SOIL_load_OGL_texture(imageFile.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
-		if (tex == 0)
-		{
-			throw Exception(std::string("Failed to load image! ") + SOIL_last_result());
-		}
+		texture = new Texture("hazard.png", Texture::TEXTURETYPE_2D);
 
 		// Create mesh
 		Vertex vertices[3];
@@ -84,8 +74,14 @@ namespace astro
 
 		program->begin();
 		{
-			glUniformMatrix4fv(MVPuniform, 1, GL_FALSE, &MVP[0][0]);
+			glUniformMatrix4fv(uModelViewProjection, 1, GL_FALSE, &modelViewProjection[0][0]);
+
+			texture->bind(0);
+			glUniform1i(uTexture, 0);
+			
 			mesh->render();
+
+			texture->unbind();
 		}
 		program->end();
 	}
@@ -95,5 +91,6 @@ namespace astro
 		delete camera;
 		delete mesh;
 		delete program;
+		delete texture;
 	}
 }

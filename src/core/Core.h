@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../utils/OpenGL.h"
-#include "glm/ext.hpp"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
 #include "Exception.h"
+
+#include "../utils/OpenGL.h"
+#include <glm/ext.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace astro
 {
