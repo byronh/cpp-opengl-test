@@ -10,13 +10,13 @@ namespace astro
 	struct Vertex
 	{
 		Vector3f position;
-		Vector3f color;
+		Vector2f texture;
+		//Vector3f normal;
 	};
 
 	typedef std::vector<Vertex> VertexBuffer;
 	typedef std::vector<unsigned int> IndexBuffer;
 
-	
 
 	class Mesh
 	{
@@ -35,6 +35,8 @@ namespace astro
 		Handle vertexArrayHandle;
 		Handle vertexBufferHandle;
 		Handle indexBufferHandle;
+
+		void init(const VertexBuffer & vertices, const IndexBuffer & indices);
 
 	};
 
