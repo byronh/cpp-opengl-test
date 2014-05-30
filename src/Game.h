@@ -2,13 +2,14 @@
 
 #include "core/Core.h"
 
+#define NUM_INSTANCES 6
+
 namespace astro
 {
 
 	class Camera;
 	class Model;
 	class Program;
-	class Texture;
 
 	class Game
 	{
@@ -29,10 +30,9 @@ namespace astro
 		Model * mesh;
 		Program * program;
 
-		Matrix4f model;
-		Matrix4f modelViewProjection;
+		Matrix4f world[NUM_INSTANCES];
+		Matrix4f modelViewProjection[NUM_INSTANCES];
 
-		Handle uModelViewProjection;
 		Handle uTexture;
 		
 		Game(const Game & game);
