@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+#include "assimp/Importer.hpp"
+
 namespace astro
 {
 
@@ -22,6 +24,8 @@ namespace astro
 		);
 
 		MVP = camera->getProjectionMatrix() * camera->getViewMatrix() * model;
+
+		Assimp::Importer Importer;
 
 		// Create mesh
 		Vertex vertices[3];

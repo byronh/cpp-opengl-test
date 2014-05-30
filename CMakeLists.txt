@@ -4,12 +4,17 @@ set (EXECUTABLE_NAME astro)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist)
 
 # Override default options in CMake subdirectories
+SET (BUILD_SHARED_LIBS OFF CACHE BOOL "Build a shared version of the library")
+SET (ASSIMP_ENABLE_BOOST_WORKAROUND ON CACHE BOOL "If a simple implementation of the used Boost functions is used. Slightly reduces functionality, but enables builds without Boost available.")
+SET (ASSIMP_BUILD_TESTS OFF CACHE BOOL "If the test suite for Assimp is built in addition to the library.")
+SET (ASSIMP_NO_EXPORT ON CACHE BOOL "Disable Assimp's export functionality.")
 SET (GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Build the GLFW example programs")
 SET (GLFW_BUILD_TESTS OFF CACHE BOOL "Build the GLFW example programs")
 SET (GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation")
 SET (GLFW_INSTALL OFF CACHE BOOL "Generate the GLFW installation target")
 
 # Subprojects
+add_subdirectory (lib/assimp)
 add_subdirectory (lib/glfw EXCLUDE_FROM_ALL)
 
 # Static libraries
@@ -20,6 +25,7 @@ file (GLOB_RECURSE SOIL_SOURCES
 add_library(soil STATIC ${SOIL_SOURCES})
 
 # Libraries that need to be added to the include path
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/assimp/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/soil/src)
@@ -51,6 +57,7 @@ source_group ("shaders" FILES ${SHADER_CODE})
 add_executable (${EXECUTABLE_NAME} ${CPP_CODE} ${SHADER_CODE})
 
 # Libraries that need to be linked to the executable
+target_link_libraries (${EXECUTABLE_NAME} assimp)
 target_link_libraries (${EXECUTABLE_NAME} glfw)
 target_link_libraries (${EXECUTABLE_NAME} ${GLFW_LIBRARIES})
 target_link_libraries (${EXECUTABLE_NAME} soil)
