@@ -7,3 +7,6 @@
 [submodule "lib/soil"]
 	path = lib/soil
 	url = git@github.com:byronh/cpp-soil
+[submodule "lib/assimp"]
+	path = lib/assimp
+	url = git@github.com:byronh/cpp-assimp.git

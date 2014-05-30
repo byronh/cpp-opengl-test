@@ -14,7 +14,7 @@ SET (GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation")
 SET (GLFW_INSTALL OFF CACHE BOOL "Generate the GLFW installation target")
 
 # Subprojects
-add_subdirectory (lib/assimp)
+add_subdirectory (lib/assimp EXCLUDE_FROM_ALL)
 add_subdirectory (lib/glfw EXCLUDE_FROM_ALL)
 
 # Static libraries
