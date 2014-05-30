@@ -63,6 +63,9 @@ target_link_libraries (${EXECUTABLE_NAME} ${GLFW_LIBRARIES})
 target_link_libraries (${EXECUTABLE_NAME} soil)
 
 # Define preprocessor macros
+IF (APPLE)
+	add_definitions (-DAPPLE)
+ENDIF ()
 IF (TRUE)
 	add_definitions (-DASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets/")
 	add_definitions (-DSHADER_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/shaders/")
@@ -81,4 +84,4 @@ ELSE ()
 		COMMAND ${CMAKE_COMMAND} -E copy_directory
 		${CMAKE_CURRENT_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/assets
 	)
-ENDIF()
+ENDIF ()
