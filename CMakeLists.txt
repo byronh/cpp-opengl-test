@@ -23,8 +23,14 @@ file (GLOB_RECURSE SOIL_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/soil/src/*.c
 )
 add_library(soil STATIC ${SOIL_SOURCES})
+file (GLOB_RECURSE ARTEMIS_SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/artemis/include/*.h
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/artemis/src/*.cpp
+)
+add_library(artemis STATIC ${ARTEMIS_SOURCES})
 
 # Libraries that need to be added to the include path
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/artemis/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/assimp/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/)
@@ -57,6 +63,7 @@ source_group ("shaders" FILES ${SHADER_CODE})
 add_executable (${EXECUTABLE_NAME} ${CPP_CODE} ${SHADER_CODE})
 
 # Libraries that need to be linked to the executable
+target_link_libraries (${EXECUTABLE_NAME} artemis)
 target_link_libraries (${EXECUTABLE_NAME} assimp)
 target_link_libraries (${EXECUTABLE_NAME} glfw)
 target_link_libraries (${EXECUTABLE_NAME} ${GLFW_LIBRARIES})

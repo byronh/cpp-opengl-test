@@ -3,6 +3,7 @@
 #include "Exception.h"
 
 #include "../utils/OpenGL.h"
+#define GLM_FORCE_RADIANS
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

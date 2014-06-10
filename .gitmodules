@@ -10,3 +10,6 @@
 [submodule "lib/assimp"]
 	path = lib/assimp
 	url = git@github.com:byronh/cpp-assimp.git
+[submodule "lib/artemis"]
+	path = lib/artemis
+	url = git@github.com:vinova/Artemis-Cpp.git
