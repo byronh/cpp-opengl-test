@@ -4,16 +4,19 @@ namespace astro
 {
 
 	Camera::Camera() :
-		projection(Matrix4f(1.0f)),
-		view(Matrix4f(1.0f))
+		_projection(Matrix4f(1.0f)),
+		_view(Matrix4f(1.0f)),
+		_dirty(true)
 	{
 
 	}
 
-	Camera::Camera(const Matrix4f & projectionMatrix, const Matrix4f & viewMatrix)
+	Camera::Camera(const Matrix4f & projection, const Matrix4f & view) :
+		_projection(projection),
+		_view(view),
+		_dirty(true)
 	{
-		projection = projectionMatrix;
-		view = viewMatrix;
+		
 	}
 
 	Camera::~Camera()
@@ -23,12 +26,22 @@ namespace astro
 
 	const Matrix4f & Camera::getProjectionMatrix() const
 	{
-		return projection;
+		return _projection;
 	}
 
 	const Matrix4f & Camera::getViewMatrix() const
 	{
-		return view;
+		return _view;
+	}
+
+	const Matrix4f & Camera::getCombinedMatrix()
+	{
+		if (_dirty)
+		{
+			_combined = _projection * _view;
+			_dirty = false;
+		}
+		return _combined;
 	}
 
 }

@@ -30,7 +30,7 @@ namespace astro
 		for (int i = 0; i < NUM_INSTANCES; ++i)
 		{
 			world[i] = glm::translate(world[i], Vector3f((i-NUM_INSTANCES/2) * 100, 0, 0));
-			modelViewProjection[i] = camera->getProjectionMatrix() * camera->getViewMatrix() * world[i];
+			modelViewProjection[i] = camera->getCombinedMatrix() * world[i];
 		}
 		
 	}
