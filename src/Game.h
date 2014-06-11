@@ -2,14 +2,12 @@
 
 #include "core/Core.h"
 
-#define NUM_INSTANCES 6
+#include <Artemis/Artemis.h>
 
 namespace astro
 {
 
-	class Camera;
-	class Model;
-	class Program;
+	class RenderSystem;
 
 	class Game
 	{
@@ -26,15 +24,11 @@ namespace astro
 
 	private:
 
-		Camera * camera;
-		Model * model;
-		Program * program;
+		artemis::World world;
+		RenderSystem * renderSystem;
 
-		Matrix4f world[NUM_INSTANCES];
-		Matrix4f modelViewProjection[NUM_INSTANCES];
+		artemis::Entity * player;
 
-		Handle uTexture;
-		
 		Game(const Game & game);
 		Game & operator = (const Game & game);
 
